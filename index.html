@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>sjhs-ictlab</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <h1>📚 Semester Slides</h1>
+  <ul>
+    <li><a href="week1.pdf" target="_blank">Introduction</a></li>
+    <li><a href="week2.pdf" target="_blank"></a></li>
+    <li><a href="week3.pdf" target="_blank"></a></li>
+    <li><a href="week4.pdf" target="_blank"></a></li>
+  </ul>
+
+  <button onclick="netlifyIdentity.logout()">Logout</button>
+
+  <script>
+    // Check if user is logged in
+    netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.location.href = "/"; // send back to login if not logged in
+      }
+    });
+  </script>
+</body>
+</html>

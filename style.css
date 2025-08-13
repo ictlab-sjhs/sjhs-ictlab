@@ -10,11 +10,12 @@ body {
 }
 
 /* Header */
-<header>{
-    <img src="logo.png" alt="School Logo">
-    <h1>ICT Laboratory</h1>
-</header>}
-
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 3px solid #004080;
+}
 <div class="banner">
     <img src="banner.jpg" alt="ICT Laboratory Banner">
 </div>

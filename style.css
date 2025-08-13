@@ -1,0 +1,87 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f5f8fa;
+    color: #333;
+}
+
+/* Header */
+<header>{
+    <img src="logo.png" alt="School Logo">
+    <h1>ICT Laboratory</h1>
+</header>}
+
+<div class="banner">
+    <img src="banner.jpg" alt="ICT Laboratory Banner">
+</div>
+header {
+    background-color: #1e88e5;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header img {
+    height: 50px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Navigation */
+nav {
+    background-color: #1565c0;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    display: block;
+}
+
+nav a:hover {
+    background-color: #0d47a1;
+}
+
+/* Content */
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Cards */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #1565c0;
+    color: white;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+    }
+}

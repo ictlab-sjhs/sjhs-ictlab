@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>sjhs-ictlab</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT Laboratory</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>📚 Semester Slides</h1>
-  <ul>
-    <li><a href="week1.pdf" target="_blank">Introduction</a></li>
-    <li><a href="week2.pdf" target="_blank"></a></li>
-    <li><a href="week3.pdf" target="_blank"></a></li>
-    <li><a href="week4.pdf" target="_blank"></a></li>
-  </ul>
+<header>
+    <img src="logo.png" alt="School Logo">
+    <h1>ICT Laboratory</h1>
+</header>
 
-  <button onclick="netlifyIdentity.logout()">Logout</button>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="rules.html">Lab Rules</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+</nav>
 
-  <script>
-    // Check if user is logged in
-    netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.location.href = "/"; // send back to login if not logged in
-      }
-    });
-  </script>
+<main>
+    <div class="card">
+        <h2>Welcome to the ICT Laboratory</h2>
+        <p>Welcome to our ICT Laboratory website! This site provides information about our lab rules, schedules, and learning resources.</p>
+    </div>
+
+    <div class="card">
+        <h2>Latest Announcements</h2>
+        <ul>
+            <li>📢 Maintenance Day - No lab classes on August 20.</li>
+            <li>🖥️ New software installed on all lab computers.</li>
+            <li>💡 ICT Week celebration coming soon!</li>
+        </ul>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 ICT Laboratory | School Name
+</footer>
 </body>
 </html>

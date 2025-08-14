@@ -1,66 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICT Laboratory</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICT Laboratory Reservation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: #333;
+    }
+    .announcements {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin: 8px 0;
+    }
+    .latest {
+      background-color: #eef9ff;
+      padding: 10px;
+      border-left: 5px solid #007bff;
+      margin-bottom: 15px;
+    }
+    .calendar-container {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .reserve-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .reserve-btn:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
+
 <header>
-    <img src="logo.png" alt="School Logo">
-    <h1>ICT Laboratory</h1>
-
-
+  <h1>ICT Laboratory Reservation</h1>
 </header>
-<!-- HERO / ANNOUNCEMENT BANNER -->
-<section class="hero">
-  <div class="hero__overlay">
-    <h1>Step Into the Future at San Juan HS ICT Lab 🚀</h1>
-    <p class="hero__subtitle">
-      Your gateway to learning, creating, and connecting with the world.
-    </p>
 
-    <ul class="hero__features">
-      <li>💻 <strong>High-speed internet access</strong></li>
-      <li>🖥 <strong>Modern, fully-equipped computer systems</strong></li>
-      <li>📡 <strong>Seamless global connectivity</strong></li>
+<section>
+  <div class="announcements">
+    <h2>📢 Latest Announcements</h2>
+    <div id="latest-announcement" class="latest">
+      Loading latest reservation...
+    </div>
+    <ul>
+      <li>💾 Save your work regularly to avoid data loss.</li>
+      <li>🧹 Keep your workstation clean before leaving.</li>
+      <li>🚫 No food or drinks inside the laboratory.</li>
+      <li>🔒 Shut down your workstation properly after use.</li>
+      <li>📅 Reservations are first-come, first-served based on the calendar below.</li>
     </ul>
+  </div>
 
-    <p class="hero__location">
-      Visit <strong>Room 4, 2nd Floor, Senior High School Building</strong> during your free time.
-    </p>
-
-    <a class="hero__btn" href="schedule.html">View Lab Schedule</a>
+  <div class="calendar-container">
+    <h2>📅 Reservation Calendar</h2>
+    <iframe src="https://https://calendar.google.com/calendar/u/0?cid=NTFiNWU3MWIzYmIyNjQ5Y2M2NzdiOTBkZDI5MTNmZDk1OWExM2U0NGM3NjgyZjM1NDlhMjAzYzlkMGY1YjA5N0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" 
+            style="border: 0" width="100%" height="600" frameborder="0" scrolling="no">
+    </iframe>
+    <br>
+    <a href="YOUR_FORM_LINK" target="_blank" class="reserve-btn">Reserve Now</a>
   </div>
 </section>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="rules.html">Lab Rules</a>
-    <a href="schedule.html">Schedule</a>
-    <a href="resources.html">Resources</a>
-    <a href="contact.html">Contact</a>
-</nav>
+<script>
+  // Replace with your published CSV link
+  const csvUrl = "YOUR_PUBLISHED_CSV_LINK";
 
-<main>
-    <div class="card">
-        <h2>Welcome to the ICT Laboratory</h2>
-        <p>Welcome to our ICT Laboratory website! This site provides information about our lab rules, schedules, and learning resources.</p>
-    </div>
+  fetch(csvUrl)
+    .then(response => response.text())
+    .then(data => {
+      const rows = data.trim().split("\n");
+      const latestRow = rows[rows.length - 1].split(",");
 
-    <div class="card">
-        <h2>Latest Announcements</h2>
-        <ul>
-            <li>📢 Maintenance Day - </li>
-            <li>🖥️ New software installed on all lab computers.</li>
-            <li>💡</li>
-        </ul>
-    </div>
-</main>
+      const fullName = latestRow[1];
+      const role = latestRow[2];
+      const section = latestRow[3];
+      const purpose = latestRow[4];
+      const date = latestRow[5];
+      const timeSlot = latestRow[6];
+      const pcs = latestRow[7];
+      const software = latestRow[8];
 
-<footer>
-    &copy; 2025 ICT Laboratory | San Juan High School
-</footer>
+      document.getElementById("latest-announcement").innerHTML = `
+        <strong>${fullName}</strong> (${role}) from <em>${section}</em> 
+        reserved the lab for <u>${purpose}</u> on <b>${date}</b> at <b>${timeSlot}</b>
+        using <b>${pcs}</b> computers. Software needed: ${software || "None"}.
+      `;
+    })
+    .catch(error => {
+      document.getElementById("latest-announcement").textContent = "Unable to load latest reservation.";
+    });
+</script>
+
 </body>
 </html>

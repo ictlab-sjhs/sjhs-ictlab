@@ -59,9 +59,9 @@
 
     <div class="card" id="reservation">
         <h2>Latest Announcements</h2>
-        <ul>
+        <ul id="reservations">
             <li>📢 <strong>Maintenance Day</strong> – Every last Friday of the month.</li>
-            <li>🖥️ <strong>New software</strong> installed:Visual Studio Code</li>
+            <li>🖥️ <strong>New software</strong> installed: Visual Studio Code</li>
             <li>📅 <strong>Check live schedule below before making reservations.</strong></li>
         </ul>
         
@@ -80,5 +80,28 @@
 <footer>
     &copy; 2025 ICT Laboratory | San Juan High School
 </footer>
+
+<!-- PapaParse Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+<script>
+// Replace with your live CSV link from Google Sheets
+const csvUrl = 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=csv';
+
+Papa.parse(csvUrl, {
+    download: true,
+    header: true,
+    complete: function(results) {
+        let list = document.getElementById("reservations");
+
+        results.data.forEach(row => {
+            if(row['Full Name'] && row['Date of Reservation']) {
+                list.innerHTML += `<li>📅 ${row['Date of Reservation']} – ${row['Full Name']} (${row['Purpose of Reservation']})</li>`;
+            }
+        });
+    }
+});
+</script>
+
 </body>
 </html>

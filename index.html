@@ -6,12 +6,25 @@
     <title>ICT Laboratory</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Optional quick styling */
         iframe {
             border: none;
             width: 100%;
             height: 500px;
             margin-top: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 15px;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #f4f4f4;
         }
     </style>
 </head>
@@ -21,7 +34,6 @@
     <h1 style="font-size:2.5rem;">ICT Laboratory</h1>
 </header>
 
-<!-- HERO / ANNOUNCEMENT BANNER -->
 <section class="hero">
   <div class="hero__overlay">
     <h1>Step Into the Future at San Juan HS ICT Lab 🚀</h1>
@@ -59,21 +71,27 @@
 
     <div class="card" id="reservation">
         <h2>Latest Announcements</h2>
-        <ul id="reservations">
+        <ul>
             <li>📢 <strong>Maintenance Day</strong> – Every last Friday of the month.</li>
             <li>🖥️ <strong>New software</strong> installed: Visual Studio Code</li>
             <li>📅 <strong>Check live schedule below before making reservations.</strong></li>
         </ul>
         
-        <!-- Reservation Button -->
         <p>
             <a href="https://forms.gle/hjAeXV3Skh86CzfY9">
                 📌 Reserve a Time Slot
             </a>
         </p>
 
-        <!-- Embedded Google Calendar -->
-       <iframe src="https://calendar.google.com/calendar/embed?src=51b5e71b3bb2649cc677b90dd2913fd959a13e44c7682f3549a203c9d0f5b097%40group.calendar.google.com&ctz=Asia%2FManila" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <!-- Google Calendar Embed -->
+        <iframe src="https://calendar.google.com/calendar/embed?src=51b5e71b3bb2649cc677b90dd2913fd959a13e44c7682f3549a203c9d0f5b097%40group.calendar.google.com&ctz=Asia%2FManila" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+        <!-- Live Reservation Table -->
+        <h3>📋 Latest Reservations</h3>
+        <table id="reservationTable">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
     </div>
 </main>
 
@@ -81,26 +99,38 @@
     &copy; 2025 ICT Laboratory | San Juan High School
 </footer>
 
-<!-- PapaParse Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-
+<!-- Fetch and display Google Sheet CSV -->
 <script>
-// Replace with your live CSV link from Google Sheets
-const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTblh8pEoJTHyUsqpiEZriiWSbXgcQDFNvuXwC8QilWL6LQLhUpf6c6AIG-E5co-1ZOsP3hwbE3BUn0/pub?gid=1813155416&single=true&output=csv';
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTblh8pEoJTHyUsqpiEZriiWSbXgcQDFNvuXwC8QilWL6LQLhUpf6c6AIG-E5co-1ZOsP3hwbE3BUn0/pub?gid=1813155416&single=true&output=csv")
+  .then(response => response.text())
+  .then(csv => {
+    const rows = csv.split("\n").map(row => row.split(","));
+    const thead = document.querySelector("#reservationTable thead");
+    const tbody = document.querySelector("#reservationTable tbody");
 
-Papa.parse(csvUrl, {
-    download: true,
-    header: true,
-    complete: function(results) {
-        let list = document.getElementById("reservations");
+    // Header row
+    const headerRow = document.createElement("tr");
+    rows[0].forEach(cell => {
+      const th = document.createElement("th");
+      th.textContent = cell;
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
 
-        results.data.forEach(row => {
-            if(row['Full Name'] && row['Date of Reservation']) {
-                list.innerHTML += `<li>📅 ${row['Date of Reservation']} – ${row['Full Name']} (${row['Purpose of Reservation']})</li>`;
-            }
+    // Data rows
+    rows.slice(1).forEach(row => {
+      if (row.length > 1) { // Skip empty rows
+        const tr = document.createElement("tr");
+        row.forEach(cell => {
+          const td = document.createElement("td");
+          td.textContent = cell;
+          tr.appendChild(td);
         });
-    }
-});
+        tbody.appendChild(tr);
+      }
+    });
+  })
+  .catch(error => console.error("Error loading CSV:", error));
 </script>
 
 </body>

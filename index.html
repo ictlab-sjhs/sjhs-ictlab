@@ -101,7 +101,7 @@
 
 <!-- Fetch and display Google Sheet CSV -->
 <script>
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTblh8pEoJTHyUsqpiEZriiWSbXgcQDFNvuXwC8QilWL6LQLhUpf6c6AIG-E5co-1ZOsP3hwbE3BUn0/pub?gid=1813155416&single=true&output=csv")
+fetch("https://https://docs.google.com/spreadsheets/d/e/2PACX-1vSSiQASdtS4yb0zQjAUkoI5q5sKbGYRvyEBWRYbWJ1xcVgBRGshK92_xYxAwha4XnaGkQQwMxUnyJSt/pub?gid=1376688583&single=true&output=csv")
   .then(response => response.text())
   .then(csv => {
     const rows = csv.split("\n").map(row => row.split(","));

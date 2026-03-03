@@ -1,37 +1,55 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICT Laboratory</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        iframe {
-            border: none;
-            width: 100%;
-            height: 500px;
-            margin-top: 10px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 15px;
-            background: white;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background: #f4f4f4;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ICT Laboratory</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --brand: #0f6fec;
+      --bg: #f7f9fc;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --success: #15803d;
+      --danger: #b91c1c;
+    }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, Arial, sans-serif; }
+    header { display:flex; align-items:center; gap:12px; padding:16px 20px; background:#fff; border-bottom:1px solid #e5e7eb; }
+    header h1 { margin:0; font-size:1.75rem; }
+    nav { display:flex; gap:12px; padding:10px 20px; background:#fff; border-bottom:1px solid #e5e7eb; position: sticky; top: 0; z-index: 10;}
+    nav a { color: var(--brand); text-decoration: none; font-weight: 600; }
+    .hero { position: relative; padding: 48px 20px; background: linear-gradient(135deg,#0f6fec 0%,#4f46e5 100%); color:#fff; }
+    .hero__overlay { max-width: 1100px; margin: 0 auto; }
+    .hero__subtitle { opacity: 0.95; }
+    .hero__features { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:8px; padding-left: 20px; }
+    .hero__btn { display:inline-block; margin-top:16px; background:#fff; color:#0f6fec; padding:10px 14px; border-radius:8px; font-weight:700; text-decoration:none; }
+    main { max-width:1100px; margin:20px auto; padding: 0 20px; }
+    .card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:18px; margin-bottom:20px; }
+    iframe { border: none; width: 100%; height: 550px; margin-top: 10px; border-radius: 8px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 15px; background: white; border-radius: 8px; overflow: hidden; }
+    th, td { border: 1px solid #e5e7eb; padding: 10px; text-align: left; }
+    th { background: #f3f4f6; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+    .field { display:flex; flex-direction:column; gap:6px; }
+    .field input, .field select, .field textarea {
+      padding:10px; border:1px solid #d1d5db; border-radius:8px; font: inherit;
+    }
+    .actions { display:flex; gap:10px; align-items:center; flex-wrap: wrap; }
+    .btn { background: var(--brand); color:#fff; border:none; padding:10px 14px; border-radius:8px; font-weight:700; cursor:pointer; }
+    .btn:disabled { opacity: .7; cursor: not-allowed; }
+    .note { color: var(--muted); font-size:.9rem; }
+    .ok { color: var(--success); font-weight: 600; }
+    .err { color: var(--danger); font-weight: 600; }
+    footer { text-align:center; padding:20px; color:#6b7280; }
+    .sr-only { position: absolute; clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; white-space: nowrap; width: 1px; }
+  </style>
 </head>
 <body>
 <header>
-    <img src="logo.png" alt="School Logo" style="height:80px;">
-    <h1 style="font-size:2.5rem;">ICT Laboratory</h1>
+  <img src="logo.png" alt="San Juan HS Logo" style="height:64px" loading="lazy" />
+  <h1>ICT Laboratory</h1>
 </header>
 
 <section class="hero">
@@ -55,83 +73,212 @@
   </div>
 </section>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="rules.html">Lab Rules</a>
-    <a href="schedule.html">Schedule</a>
-    <a href="resources.html">Resources</a>
-    <a href="contact.html">Contact</a>
+<nav aria-label="Primary">
+  <a href="index.html" aria-current="page">Home</a>
+  <a href="rules.html">Lab Rules</a>
+  <a href="schedule.html">Schedule</a>
+  <a href="resources.html">Resources</a>
+  <a href="contact.html">Contact</a>
 </nav>
 
 <main>
-    <div class="card">
-        <h2>Welcome to the ICT Laboratory</h2>
-        <p>This site provides information about our lab rules, schedules, and learning resources.</p>
-    </div>
+  <div class="card">
+    <h2>Welcome to the ICT Laboratory</h2>
+    <p>This site provides information about our lab rules, schedules, and learning resources.</p>
+  </div>
 
-    <div class="card" id="reservation">
-        <h2>Latest Announcements</h2>
-        <ul>
-            <li>📢 <strong>Maintenance Day</strong> – Every last Friday of the month.</li>
-            <li>🖥️ <strong>New software</strong> installed: Visual Studio Code</li>
-            <li>📅 <strong>Check live schedule below before making reservations.</strong></li>
-        </ul>
-        
-        <p>
-            <a href="https://forms.gle/hjAeXV3Skh86CzfY9">
-                📌 Reserve a Time Slot
-            </a>
-        </p>
+  <div class="card" id="reservation">
+    <h2>Latest Announcements</h2>
+    <ul>
+      <li>📢 <strong>Maintenance Day</strong> – Every last Friday of the month.</li>
+      <li>🖥️ <strong>New software</strong> installed: Visual Studio Code</li>
+      <li>📅 <strong>Check live schedule below before making reservations.</strong></li>
+    </ul>
 
-        <!-- Google Calendar Embed -->
-        <iframe src="https://calendar.google.com/calendar/embed?src=51b5e71b3bb2649cc677b90dd2913fd959a13e44c7682f3549a203c9d0f5b097%40group.calendar.google.com&ctz=Asia%2FManila" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <!-- Reservation Form -->
+    <h3 style="margin-top: 8px;">📌 Reserve a Time Slot</h3>
+    <form id="reserveForm" aria-describedby="reserveHelp">
+      <div class="grid">
+        <div class="field">
+          <label for="name">Full Name *</label>
+          <input id="name" name="name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email (optional for confirmation)</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="date">Date *</label>
+          <input id="date" name="date" type="date" required />
+        </div>
+        <div class="field">
+          <label for="start">Start Time *</label>
+          <input id="start" name="start" type="time" step="900" required />
+        </div>
+        <div class="field">
+          <label for="end">End Time *</label>
+          <input id="end" name="end" type="time" step="900" required />
+        </div>
+        <div class="field">
+          <label for="purpose">Purpose *</label>
+          <textarea id="purpose" name="purpose" rows="2" required placeholder="Study, research, class activity, etc."></textarea>
+        </div>
+        <div class="field">
+          <label for="equipment">Equipment Needed (optional)</label>
+          <input id="equipment" name="equipment" placeholder="e.g., Projector, Headsets" />
+        </div>
+      </div>
+      <p class="note" id="reserveHelp" style="margin:8px 0 0;">
+        Lab hours: <strong>08:00–17:00 (Mon–Fri)</strong>. Minimum 30 minutes, maximum 3 hours, with a 15-minute buffer between bookings. No reservations on the last Friday of the month (Maintenance Day).
+      </p>
+      <div class="actions" style="margin-top: 12px;">
+        <button class="btn" id="submitBtn" type="submit">Submit Reservation</button>
+        <span id="statusMsg" class="note" role="status" aria-live="polite"></span>
+      </div>
+    </form>
 
-        <!-- Live Reservation Table -->
-        <h3>📋 Latest Reservations</h3>
-        <table id="reservationTable">
-            <thead></thead>
-            <tbody></tbody>
-        </table>
-    </div>
+    <!-- Google Calendar Embed (use the same calendar that the script writes to) -->
+    <iframe
+      title="ICT Lab Calendar"
+      loading="lazy"
+      src="https://calendar.google.com/calendar/embed?src=51b5e71b3bb2649cc677b90dd2913fd959a13e44c7682f3549a203c9d0f5b097%40group.calendar.google.com&ctz=Asia%2FManila">
+    </iframe>
+
+    <!-- Live Reservation Table -->
+    <h3>📋 Upcoming Reservations</h3>
+    <table id="reservationTable" aria-live="polite">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Reserved By</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 </main>
 
 <footer>
-    &copy; 2025 ICT Laboratory | San Juan High School
+  &copy; 2025 ICT Laboratory | San Juan High School
 </footer>
 
-<!-- Fetch and display Google Sheet CSV -->
 <script>
-fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSiQASdtS4yb0zQjAUkoI5q5sKbGYRvyEBWRYbWJ1xcVgBRGshK92_xYxAwha4XnaGkQQwMxUnyJSt/pub?gid=1376688583&single=true&output=csv")
-  .then(response => response.text())
-  .then(csv => {
-    const rows = csv.split("\n").map(row => row.split(","));
-    const thead = document.querySelector("#reservationTable thead");
-    const tbody = document.querySelector("#reservationTable tbody");
+  // === CONFIG: replace with your Apps Script Web App URL ===
+  const WEB_APP_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
 
-    // Header row
-    const headerRow = document.createElement("tr");
-    rows[0].forEach(cell => {
-      const th = document.createElement("th");
-      th.textContent = cell;
-      headerRow.appendChild(th);
-    });
-    thead.appendChild(headerRow);
+  const form = document.getElementById('reserveForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusMsg = document.getElementById('statusMsg');
 
-    // Data rows
-    rows.slice(1).forEach(row => {
-      if (row.length > 1) { // Skip empty rows
-        const tr = document.createElement("tr");
-        row.forEach(cell => {
-          const td = document.createElement("td");
-          td.textContent = cell;
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusMsg.textContent = '';
+    submitBtn.disabled = true;
+
+    // Client-side checks to guide users early (server still validates)
+    const date = form.date.value;
+    const start = form.start.value;
+    const end = form.end.value;
+
+    if (!date || !start || !end) {
+      showError('Please complete date and time.');
+      return;
+    }
+
+    const s = toDate(`${date}T${start}:00`);
+    const en = toDate(`${date}T${end}:00`);
+    if (!(s && en) || en <= s) {
+      showError('End time must be after start time.');
+      return;
+    }
+
+    const payload = new URLSearchParams(new FormData(form));
+    try {
+      statusMsg.textContent = 'Submitting...';
+      const res = await fetch(WEB_APP_URL, {
+        method: 'POST',
+        // No explicit Content-Type header so browser sends form-encoded (simple request).
+        body: payload
+      });
+      const text = await res.text();
+      const data = safeJson(text);
+
+      if (!data || data.ok !== true) {
+        showError((data && data.error) ? data.error : 'Submission failed.');
+        return;
       }
-    });
-  })
-  .catch(error => console.error("Error loading CSV:", error));
-</script>
 
+      showOk(`Reservation confirmed! Reference: ${data.data.reservationId}`);
+      form.reset();
+      // Refresh upcoming table
+      loadUpcoming();
+    } catch (err) {
+      showError('Network or server error. Please try again.');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  function showError(msg) { statusMsg.textContent = msg; statusMsg.className = 'note err'; submitBtn.disabled = false; }
+  function showOk(msg) { statusMsg.textContent = msg; statusMsg.className = 'note ok'; }
+
+  function toDate(iso) { const d = new Date(iso); return isNaN(d) ? null : d; }
+  function safeJson(t) { try { return JSON.parse(t); } catch { return null; } }
+
+  async function loadUpcoming() {
+    const tbody = document.querySelector('#reservationTable tbody');
+    tbody.innerHTML = `<tr><td colspan="5">Loading...</td></tr>`;
+    try {
+      const res = await fetch(`${WEB_APP_URL}?list=upcoming`);
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'Failed to load');
+      const rows = data.data;
+
+      if (!rows.length) {
+        tbody.innerHTML = `<tr><td colspan="5">No upcoming reservations.</td></tr>`;
+        return;
+      }
+
+      const frag = document.createDocumentFragment();
+      rows.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${r.date}</td>
+          <td>${r.start}</td>
+          <td>${r.end}</td>
+          <td>${r.by}</td>
+          <td>${escapeHtml(r.purpose || '')}</td>
+        `;
+        frag.appendChild(tr);
+      });
+      tbody.innerHTML = '';
+      tbody.appendChild(frag);
+    } catch (err) {
+      tbody.innerHTML = `<tr><td colspan="5">Error loading reservations.</td></tr>`;
+    }
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  // Set min date to today in local timezone
+  (function init() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    document.getElementById('date').setAttribute('min', `${yyyy}-${mm}-${dd}`);
+    loadUpcoming();
+  })();
+</script>
 </body>
 </html>
